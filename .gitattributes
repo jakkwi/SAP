@@ -1,0 +1,17 @@
+# Line endings -------------------------------------------------------------
+# ABAP sources are served by SAP with LF; keep the repository normalised so
+# diffs stay clean regardless of who checks out on Windows.
+* text=auto eol=lf
+*.abap text eol=lf
+*.md   text eol=lf
+
+# GitHub linguist ----------------------------------------------------------
+# abapGit writes the *.xml object metadata, so collapse it in diffs and keep
+# it out of the language statistics.
+**/src/**/*.xml linguist-generated=true
+
+# This is an ABAP portfolio. The Node tooling around it (transpiler runner,
+# CI helpers) is build infrastructure, not the work being showcased, so it
+# must not dominate the language bar.
+scripts/**/*.mjs linguist-detectable=false
+*.abap linguist-language=ABAP

@@ -1,0 +1,17 @@
+{
+  "name": "zjk-alpha",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ALPHA conversion in plain ABAP, linted and unit tested in CI",
+  "scripts": {
+    "lint": "abaplint",
+    "transpile": "abap_transpile",
+    "unit": "node output/_unit_open.mjs && node scripts/report-unit-results.mjs",
+    "test": "npm run lint && npm run transpile && npm run unit"
+  },
+  "devDependencies": {
+    "@abaplint/cli": "^2.114.0",
+    "@abaplint/runtime": "^2.13.59",
+    "@abaplint/transpiler-cli": "^2.13.59"
+  }
+}

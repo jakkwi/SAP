@@ -1,0 +1,36 @@
+{
+  "global": {
+    "files": "/src/**/*.*"
+  },
+  "syntax": {
+    "version": "v755",
+    "errorNamespace": "^(Z|Y|LCL|LTCL|LIF|LTY)"
+  },
+  "rules": {
+    "parser_error": true,
+    "check_syntax": true,
+    "unknown_types": true,
+    "obsolete_statement": true,
+    "7bit_ascii": true,
+    "space_before_colon": true,
+    "line_length": { "length": 120 },
+    "sequential_blank": { "lines": 4 },
+    "contains_tab": true,
+    "keyword_case": { "style": "upper" },
+    "definitions_top": true,
+    "exit_or_check": true,
+    "functional_writing": true,
+    "local_variable_names": {
+      "patternKind": "forbidden",
+      "expectedData": "^(LV_|LS_|LT_|LO_|LR_|L_)",
+      "expectedConstant": "^(LC_|C_)",
+      "expectedFS": "^<(LFS_|FS_)"
+    },
+    "method_length": { "statements": 40 },
+    "no_public_attributes": true,
+    "prefer_returning_to_exporting": true,
+    "unused_variables": true,
+    "empty_statement": true,
+    "when_others_last": true
+  }
+}

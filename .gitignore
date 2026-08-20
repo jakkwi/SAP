@@ -1,0 +1,35 @@
+# Node tooling (abaplint, abap_transpile) -----------------------------------
+node_modules/
+output/
+dist/
+*.log
+
+# Eclipse ADT ---------------------------------------------------------------
+.metadata/
+.settings/
+.project
+.classpath
+*.launch
+tmp/
+
+# IDE / OS ------------------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Secrets - never commit anything from this section --------------------------
+.env
+.env.*
+*.pse
+*.p12
+*.pfx
+*.pem
+*.key
+secrets*.json
+
+# Local SAP exports ---------------------------------------------------------
+*.nugg
+*.slnk
+*.zip

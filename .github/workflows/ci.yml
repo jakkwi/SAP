@@ -1,0 +1,71 @@
+name: CI
+
+# One pipeline for the whole portfolio. Every top-level folder that contains a
+# package.json is discovered automatically and linted, transpiled and unit
+# tested in parallel, so adding a new mini project needs no CI changes.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  discover:
+    name: Discover projects
+    runs-on: ubuntu-latest
+    outputs:
+      projects: ${{ steps.find.outputs.projects }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - id: find
+        name: Collect project folders
+        run: |
+          projects=$(find . -mindepth 2 -maxdepth 2 -name package.json \
+            -not -path './_*' -not -path './.*' -printf '%h\n' \
+            | sed 's|^\./||' \
+            | sort \
+            | jq -Rsc 'split("\n") | map(select(length > 0))')
+          echo "Discovered projects: $projects"
+          if [ "$projects" = "[]" ]; then
+            echo "::error::No project folders found - expected at least one <project>/package.json"
+            exit 1
+          fi
+          echo "projects=$projects" >> "$GITHUB_OUTPUT"
+
+  build:
+    name: ${{ matrix.project }}
+    needs: discover
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        project: ${{ fromJSON(needs.discover.outputs.projects) }}
+
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: ${{ matrix.project }}/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Static analysis (abaplint)
+        run: npm run lint
+
+      - name: Transpile ABAP to JavaScript
+        run: npm run transpile
+
+      - name: Run ABAP Unit tests
+        run: npm run unit
