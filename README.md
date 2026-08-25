@@ -19,6 +19,7 @@ point.
 | --- | --- | --- |
 | [zjk_alpha](zjk_alpha) | ALPHA conversion (`CONVERSION_EXIT_ALPHA_INPUT` / `_OUTPUT`) re-implemented as a dependency-free class | Replacing an untestable function module with pure, fully covered logic |
 | [zjk_currency](zjk_currency) | Currency amounts shifted between `CURR` storage and their real magnitude, as `TCURX` defines | Keeping a database dependency out of pure arithmetic by injecting it |
+| [zjk_range](zjk_range) | Evaluates a select-options table the way the `IN` operator does, all ten options and both signs | Getting the non-obvious selection rules right: empty matches all, exclusion wins |
 
 ## How these projects are built
 
@@ -42,6 +43,7 @@ Here it is a `git push` and about a minute.
 _template/                  scaffold for the next mini project
 zjk_alpha/                  ALPHA conversion
 zjk_currency/               currency amount conversion
+zjk_range/                  select-options range evaluation
 CONVENTIONS.md              ABAP and repository standards
 LICENSE                     MIT, covers everything here
 ```
