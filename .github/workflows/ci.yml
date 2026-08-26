@@ -69,3 +69,21 @@ jobs:
 
       - name: Run ABAP Unit tests
         run: npm run unit
+
+  gate:
+    name: All checks passed
+    needs: build
+    if: always()
+    runs-on: ubuntu-latest
+
+    # A single, stable status check for branch protection to require. The build
+    # job is a matrix that grows with every new project, so its leg names are a
+    # moving target; this job is not. It passes only when every leg passed.
+    steps:
+      - name: Require every project build to have succeeded
+        run: |
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "::error::At least one project failed lint, transpile or unit tests"
+            exit 1
+          fi
+          echo "Every project passed lint, transpile and ABAP Unit."

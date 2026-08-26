@@ -51,10 +51,15 @@ broken.
 
 ## Git
 
-- Work goes straight to `main`. This is a single author repository, so there are
-  no pull requests and no branch protection. CI runs on every push, and a red
-  build is fixed rather than worked around.
-- Commits are GPG signed.
+- Work reaches `main` only through a pull request. `main` is a protected branch:
+  GitHub refuses to merge until CI is green and refuses a direct push outright.
+  This is a single author repository, so a pull request is a conversation with
+  the reviewer you will be in six months, argued against the template in
+  `.github/pull_request_template.md`. The whole process is written down in
+  [docs/WORKFLOW.md](docs/WORKFLOW.md).
+- One branch per change, named for what it adds: `feat/zjk-range`,
+  `ci/pipeline-and-process`. Squash on merge, so `main` keeps one commit each.
+- Commits and merges are GPG signed and show as Verified on GitHub.
 - Commit subjects are imperative and scoped to one project:
   `zjk_alpha: never truncate input longer than the target length`.
 - `src/**/*.xml` is marked `linguist-generated` - abapGit writes it, so it is
