@@ -1,0 +1,11 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directories: ["/_template", "/zjk_alpha", "/zjk_currency", "/zjk_range"]
+    schedule: { interval: "weekly" }
+    groups:
+      abaplint:
+        patterns: ["@abaplint/*"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule: { interval: "weekly" }
