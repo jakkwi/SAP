@@ -33,3 +33,7 @@ secrets*.json
 *.nugg
 *.slnk
 *.zip
+
+# Claude Code personal files
+CLAUDE.local.md
+.claude/settings.local.json
