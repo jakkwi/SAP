@@ -28,7 +28,11 @@ def committed_lines(p: Path) -> set[str]:
     try:
         rel = p.resolve().relative_to(Path.cwd().resolve()).as_posix()
         old = subprocess.run(
-            ["git", "show", f"HEAD:{rel}"], capture_output=True, text=True, encoding="utf-8"
+            ["git", "show", f"HEAD:{rel}"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            check=False,
         )
         return set(old.stdout.splitlines()) if old.returncode == 0 else set()
     except (ValueError, OSError):
