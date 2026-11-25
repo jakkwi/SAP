@@ -13,6 +13,17 @@ integration **without an SAP system** - using the abaplint transpiler and
 The algorithms here are deliberately modest. The engineering around them is the
 point.
 
+It is written for ABAP developers who want to see Git, static analysis and unit
+tests applied to ABAP without an SAP system in the loop, and for anyone who
+needs one of these small classes in their own system.
+
+## Requirements
+
+| What | For |
+| --- | --- |
+| Node.js 20 or later (CI uses 22) and npm | Running lint, transpile and unit tests locally |
+| An SAP system with abapGit | Only for installing a package; not needed for the checks |
+
 ## Projects
 
 | Project | What it does | Worth a look for |
@@ -41,6 +52,7 @@ Here it is a `git push` and about a minute.
 ```
 .github/workflows/ci.yml    one pipeline; discovers projects automatically
 _template/                  scaffold for the next mini project
+docs/                       architecture, decisions (adr/) and workflow
 zjk_alpha/                  ALPHA conversion
 zjk_currency/               currency amount conversion
 zjk_range/                  select-options range evaluation
@@ -105,6 +117,16 @@ CI needs no changes - it discovers every top-level folder containing a
 Naming, testing and commit standards are documented in
 [CONVENTIONS.md](CONVENTIONS.md) and enforced by `abaplint.json` where a rule
 can be machine-checked.
+
+## Documentation
+
+| Doc | Contents |
+| --- | --- |
+| [docs/architecture.md](docs/architecture.md) | What each package contains, how the checks run, where things live |
+| [docs/adr/](docs/adr) | Decisions someone could question, with their reasons and costs |
+| [docs/WORKFLOW.md](docs/WORKFLOW.md) | How a change reaches `main`, and what CI does not check |
+| [CONVENTIONS.md](CONVENTIONS.md) | Naming, class design, test and Git standards |
+| Each project's `README.md` | What the class does, usage, and notes on its tests |
 
 ## Licence
 
