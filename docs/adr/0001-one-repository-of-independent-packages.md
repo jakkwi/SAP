@@ -2,13 +2,13 @@
 
 ## Status
 
-Accepted. In place since the first commit.
+Accepted.
 
 ## Context
 
 The repository holds several small ABAP projects. abapGit, the tool that
 moves ABAP objects between Git and an SAP system, reads `.abapgit.xml` from the
-root of a repository and treats the whole repository as one package tree. One
+root of a repository, so one repository maps to one abapGit repository. One
 repository per project would install with a plain abapGit online pull, but
 would mean one CI setup, one licence and one set of conventions per project.
 

@@ -42,12 +42,12 @@ instead, so no database is involved. The reasoning is in
 
 ## How the checks run
 
-The ABAP code is checked without an SAP system. Each package runs the same
-four stages, defined in its `package.json`:
+The ABAP code is checked without an SAP system. Each package defines the
+same npm scripts in its `package.json`:
 
 | Stage | What happens |
 | --- | --- |
-| `npm run lint` | abaplint checks the sources against `abaplint.json` (ABAP version 7.55, strict rules) |
+| `npm run lint` | abaplint checks the sources against `abaplint.json` (ABAP version 7.55) |
 | `npm run transpile` | `@abaplint/transpiler-cli` compiles `src/` and its ABAP Unit tests to JavaScript in `output/`, against [open-abap-core](https://github.com/open-abap/open-abap-core) |
 | `npm run unit` | Node runs the generated tests, then `scripts/report-unit-results.mjs` prints each result and fails on any failed test or on an empty run |
 | `npm test` | All three in order |
@@ -83,7 +83,7 @@ in [ADR 0001](adr/0001-one-repository-of-independent-packages.md).
 | `zjk_*/abaplint.json` | Static analysis rules, identical in every package |
 | `zjk_*/abap_transpile.json` | Transpiler settings: input `src`, output `output`, open-abap-core as library |
 | `zjk_*/scripts/report-unit-results.mjs` | Turns the transpiled test results into console output and an exit code |
-| `zjk_*/package.json` | npm scripts and the abaplint tool versions, locked in `package-lock.json` |
+| `zjk_*/package.json` | npm scripts and the abaplint toolchain versions, locked in `package-lock.json` |
 | `_template/` | Scaffold for a new package, with a [checklist](../_template/CHECKLIST.md) |
 | `.github/workflows/ci.yml` | The one CI pipeline for all packages |
 | `.github/pull_request_template.md` | Questions every pull request answers |

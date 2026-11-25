@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted. In place since the first commit.
+Accepted.
 
 ## Context
 

@@ -31,3 +31,4 @@ npm install          # generates package-lock.json, which CI needs for npm ci
 - [ ] `package-lock.json` is committed - CI runs `npm ci` and fails without it
 - [ ] Every public method has at least one test
 - [ ] Add a row to the project table in the [root README](../README.md)
+- [ ] Add a row to the Components table in [docs/architecture.md](../docs/architecture.md)

@@ -10,8 +10,8 @@ Standard SAP already offers what these two packages do: the conversion exit
 function modules `CONVERSION_EXIT_ALPHA_INPUT` and `_OUTPUT`, and the `TCURX`
 table for the decimal places of a currency. Logic that calls a function module
 or reads a table directly cannot be unit tested without that system state, and
-cannot run on the transpiler at all (see
-[ADR 0002](0002-run-abap-unit-on-the-transpiler.md)).
+the transpiler setup in this repository provides no SAP database tables or
+function modules (see [ADR 0002](0002-run-abap-unit-on-the-transpiler.md)).
 
 ## Decision
 
@@ -30,8 +30,8 @@ packages, under "No hidden dependencies".
 
 ## Consequences
 
-- Every public method is covered by fast, deterministic tests with no
-  database or system state.
+- The public methods have fast, deterministic unit tests with no database or
+  system state.
 - `zjk_alpha` re-implements standard behaviour, so it can drift from the
   conversion exit. Its tests pin the behaviour it claims, and its README lists
   the cases it follows.
